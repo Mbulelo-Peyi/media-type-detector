@@ -16,10 +16,26 @@ yarn add media-type-detector
 
 ## Usage
 ```jsx
-import { detectMediaCategory } from 'media-type-detector';
+import { detectMediaCategory, urlToBlob, getBlobAndDetectCategory } from 'media-type-detector';
 
-const category = await detectMediaCategory(file); // file is a Blob or File
-console.log(category); // 'image', 'video', 'pdf', etc.
+// Example 1: Detect category from a Blob or File directly
+const file = new Blob(['...'], { type: 'image/png' });
+const category1 = await detectMediaCategory(file);
+console.log('Category from Blob:', category1); // e.g. 'image'
+
+// Example 2: Convert a URL to a Blob
+const url = 'https://example.com/image.png';
+try {
+  const blob = await urlToBlob(url);
+  console.log('Blob fetched from URL:', blob);
+} catch (error) {
+  console.error('Failed to fetch blob:', error);
+}
+
+// Example 3: Fetch a file from a URL and detect its media category in one step
+const category3 = await getBlobAndDetectCategory(url);
+console.log('Category from URL:', category3); // e.g. 'image'
+
 ```
 
 
