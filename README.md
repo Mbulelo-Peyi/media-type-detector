@@ -2,10 +2,9 @@
 
 A tiny utility to detect and classify the category of a file (image, video, audio, document, etc.) from a `Blob` using [file-type](https://github.com/sindresorhus/file-type).
 
-🧪 Written in TypeScript  
-🌐 Works in the browser  
-⚛️ Ready for use in React apps  
-🤝 Created by volunteers at GoodWorkHub
+Written in TypeScript  
+Works in the browser  
+Ready for use in React apps  
 
 ## Installation
 
