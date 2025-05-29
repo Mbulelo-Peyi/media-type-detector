@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",                            // Good balance for wide compatibility
+    "module": "ESNext",                            // Fine for ESM or bundling with tools
+    "moduleResolution": "Node",                    // Correct resolution strategy
+    "lib": ["DOM", "ESNext"],                      // Enables both Node-like and browser types
+    "declaration": true,                           // Generates .d.ts files for typings
+    "outDir": "dist",                              // Output directory for compiled files
+    "strict": true,                                // Enables all strict type checks
+    "esModuleInterop": true,                       // Allows default imports from CommonJS
+    "skipLibCheck": true,                          // Optional: Speeds up build, skips type checks on node_modules
+    "forceConsistentCasingInFileNames": true       // Optional: Catches case-sensitivity issues (important on CI)
+  },
+  "include": ["src", "jest.config.js", "src/__mocks__"],
+  "exclude": ["dist", "node_modules", "**/*.test.ts"]
+}

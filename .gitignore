@@ -1,0 +1,34 @@
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Jest coverage
+coverage/
+
+# Env files
+.env
+.env.*
+
+# Editor settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Optional: ignore local test snapshots if you don’t want to commit them
+__snapshots__/
+
+# npm
+.npmignore

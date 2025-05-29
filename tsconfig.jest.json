@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx", // if React is used
+    "module": "CommonJS" // Jest works best with CommonJS modules
+  }
+}
