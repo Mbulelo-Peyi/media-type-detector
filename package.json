@@ -36,5 +36,13 @@
     "jest-environment-jsdom": "^30.0.0-beta.3",
     "ts-jest": "^29.3.4",
     "typescript": "^5.8.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mbulelo-Peyi/media-type-detector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mbulelo-Peyi/media-type-detector/issues"
+  },
+  "homepage": "https://github.com/Mbulelo-Peyi/media-type-detector#readme"
 }
