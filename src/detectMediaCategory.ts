@@ -3,11 +3,28 @@ import { MediaCategory, DetectOptions } from './types';
 import { MediaDetectionError } from './errors';
 
 /**
- * Detects the category of a file Blob (e.g., image, video, document, text, etc.)
- * @param blob - The file Blob to analyze
- * @param options - Optional configuration for error handling
- * @returns A promise that resolves to the detected media category
- * @throws MediaDetectionError if throwOnError is true and detection fails
+ * Fetches a Blob from a URL.
+ * @param url - The URL of the resource to fetch.
+ * @returns A Promise that resolves to a Blob.
+ * @throws Error if the fetch fails or the response is invalid.
+ */
+export async function urlToBlob(url: string): Promise<Blob> {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get('content-type');
+  if (!contentType) {
+    throw new Error('Missing Content-Type header');
+  }
+
+  return await response.blob();
+}
+
+/**
+ * Detects the category of a file Blob (e.g., image, video, document, etc.)
  */
 export const detectMediaCategory = async (
   blob: Blob,
@@ -18,9 +35,7 @@ export const detectMediaCategory = async (
   try {
     const fileType = await fileTypeFromBlob(blob);
 
-    if (!fileType?.mime) {
-      return 'unknown';
-    }
+    if (!fileType?.mime) return 'unknown';
 
     const { mime, ext } = fileType;
 
@@ -55,11 +70,30 @@ export const detectMediaCategory = async (
       error
     );
 
-    if (throwOnError) {
-      throw mediaError;
-    }
+    if (throwOnError) throw mediaError;
 
     logger(mediaError);
     return 'unknown';
+  }
+};
+
+/**
+ * Downloads a file from a URL and detects its media category.
+ * @param url - The file URL.
+ * @param options - Optional detection settings.
+ * @returns The detected media category.
+ */
+export const getBlobAndDetectCategory = async (
+  url: string,
+  options?: DetectOptions,
+  detectFn: typeof detectMediaCategory = detectMediaCategory
+): Promise<MediaCategory | undefined> => {
+  try {
+    const blob = await urlToBlob(url);
+    console.log('Blob:', blob);
+    return await detectFn(blob, options);
+  } catch (error) {
+    console.error('Error in getBlobAndDetectCategory:', error);
+    return undefined;
   }
 };

@@ -1,9 +1,21 @@
 export class MediaDetectionError extends Error {
-  constructor(message: string, public originalError?: unknown) {
+  public originalError?: unknown;
+
+  constructor(message: string, originalError?: unknown) {
     super(message);
     this.name = 'MediaDetectionError';
-    if (originalError instanceof Error && originalError.stack) {
-      this.stack = originalError.stack;
+    this.originalError = originalError;
+
+    // Append original error stack if available
+    if (originalError instanceof Error) {
+      this.stack += '\nCaused by: ' + originalError.stack;
+    } else if (typeof originalError === 'string') {
+      this.stack += '\nCaused by: ' + originalError;
+    }
+
+    // Maintains proper stack trace (for V8 environments like Node)
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, MediaDetectionError);
     }
   }
 }
