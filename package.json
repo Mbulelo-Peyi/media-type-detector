@@ -1,6 +1,6 @@
 {
   "name": "media-type-detector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Detects and categorizes media files (image, video, document, etc.) from a Blob using file-type.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -11,6 +11,6 @@
     "skipLibCheck": true,                          // Optional: Speeds up build, skips type checks on node_modules
     "forceConsistentCasingInFileNames": true       // Optional: Catches case-sensitivity issues (important on CI)
   },
-  "include": ["src", "jest.config.js", "src/__mocks__"],
-  "exclude": ["dist", "node_modules", "src/__mocks__", "**/*.test.ts"]
+  "include": ["src"],
+  "exclude": [ "dist", "node_modules", "**/*.test.ts", "**/__mocks__/**" ]
 }
